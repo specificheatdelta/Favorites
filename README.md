@@ -1,29 +1,34 @@
-Favorites API
+**Favorites API**
+
 This is a Python Flask-based RESTful API that provides endpoints to store, retrieve, and update favorite items for a user in a SQLite database. The database schema consists of a single table named favorites that contains the following columns:
 
-email (string)
-item_id (integer)
-created_at (datetime)
-updated_at (datetime)
-Setup
-Clone the repository and navigate into the project directory.
+- email (string)
+- item_id (integer)
+- created_at (datetime)
+- updated_at (datetime)
 
-bash
-Copy code
-git clone https://github.com/example/favorites-api.git
-cd favorites-api
-Install the required Python packages.
 
-Copy code
-pip install -r requirements.txt
-Initialize the database by running the init_db() function.
+**Setup**
 
-Copy code
-python api.py
-Endpoints
+1. Clone the repository and navigate into the project directory.
+
+`git clone https://github.com/example/favorites-api.git
+cd favorites-api`
+
+2. Install the required Python packages.
+
+`pip install -r requirements.txt`
+
+3. Initialize the database by running the init_db() function.
+
+`python api.py`
+
+**Endpoints**
+
 The API provides the following endpoints:
 
-POST /favorites
+**POST /favorites**
+
 This endpoint is used to add a new favorite item for a user. The request body should contain the following fields:
 
 email (string)
@@ -116,7 +121,9 @@ Content-Type: application/json
     "item_id": 12345,
     "created_at": "2023-04-09T12:00:00Z"
 }
-Error Handling
+
+**Error Handling**
+
 The API returns appropriate HTTP status codes for different types of errors. Here are some examples:
 
 400 Bad Request: Invalid request body or query parameter.

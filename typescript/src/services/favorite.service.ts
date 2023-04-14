@@ -1,23 +1,53 @@
-import { Favorite } from './favorite.entity';
-import { Repository } from './repository';
-import { FavoriteRepository } from './favorite.repository';
+import { Favorite } from '../entities/favorite.entity';
+import { IFavoriteRepository } from '../repositories/favorite.repository.interface';
+import { Filter } from '../utils/request';
 
 export class FavoriteService {
-  constructor(private repository: Repository<Favorite> = new FavoriteRepository()) { }
+  constructor(private readonly favoriteRepository: IFavoriteRepository) { }
 
-  createFavorite(favorite: Favorite): Promise<Favorite> {
-    return this.repository.create(favorite);
+  async getFavoriteById(profileId: string, id: string): Promise<Favorite | null> {
+    return this.favoriteRepository.getFavoriteById(profileId, id);
   }
 
-  updateFavorite(favorite: Favorite): Promise<Favorite> {
-    return this.repository.update(favorite);
+  async getFavorites(profileId: string, filter: Filter): Promise<Favorite[]> {
+    return this.favoriteRepository.getFavorites(profileId, filter);
   }
 
-  deleteFavorite(id: string): Promise<void> {
-    return this.repository.delete(id);
+  async createFavorite(profileId: string, favoriteData: Partial<Favorite>): Promise<Favorite> {
+    const favorite = new Favorite();
+    favorite.profileId = profileId;
+    favorite.title = favoriteData.title;
+    favorite.category = favoriteData.category;
+    favorite.contentId = favoriteData.contentId;
+
+    return this.favoriteRepository.saveFavorite(favorite);
   }
 
-  getFavorites(filter: any): Promise<Favorite[]> {
-    return this.repository.findBy(filter);
+  async updateFavorite(
+    profileId: string,
+    id: string,
+    favoriteData: Partial<Favorite>
+  ): Promise<void> {
+    const favorite = await this.favoriteRepository.getFavoriteById(profileId, id);
+
+    if (!favorite) {
+      throw new AppError(StatusCode.NOT_FOUND, 'Favorite not found');
+    }
+
+    favorite.title = favoriteData.title || favorite.title;
+    favorite.category = favoriteData.category || favorite.category;
+    favorite.contentId = favoriteData.contentId || favorite.contentId;
+
+    await this.favoriteRepository.saveFavorite(favorite);
+  }
+
+  async deleteFavorite(profileId: string, id: string): Promise<void> {
+    const favorite = await this.favoriteRepository.getFavoriteById(profileId, id);
+
+    if (!favorite) {
+      throw new AppError(StatusCode.NOT_FOUND, 'Favorite not found');
+    }
+
+    await this.favoriteRepository.deleteFavorite(favorite);
   }
 }

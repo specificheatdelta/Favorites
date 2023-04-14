@@ -17,6 +17,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "bunyan": "^1.8.15",
+    "dotenv": "^16.0.3",
     "mysql": "^2.18.1",
     "typeorm": "^0.3.14"
   }

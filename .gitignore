@@ -54,7 +54,7 @@ shared-local-instance.db
 
 # Configs #
 ###########
-.env
+# .env
 .env.*
 .env.*bak*
 !.env.example

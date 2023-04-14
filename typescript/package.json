@@ -1,0 +1,20 @@
+{
+  "name": "favorites-api",
+  "version": "0.1.0",
+  "description": "Favorites API, this is! Manage user favorites, it does. Node.js, TypeScript, and AWS Lambda, we use, hmm. In MySQL database, the data is stored, yes.",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "swagger-ui": "^4.18.2",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "typeorm": "^0.3.14"
+  }
+}

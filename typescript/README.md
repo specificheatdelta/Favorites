@@ -1,4 +1,27 @@
+# Favorite API
+
 Favorites API, this is! Manage user favorites, it does. Node.js, TypeScript, and AWS Lambda, we use, hmm. In MySQL database, the data is stored, yes.
+
+## Tech Stack
+
+- AWS Lambda
+- AWS API Gateway
+- Node.js
+- TypeScript
+- Serverless Framework
+- MySQL
+- TypeORM
+
+## Project Structure
+
+- `src/`: Source code directory
+  - `entities/`: Entity classes for TypeORM
+  - `handler.ts`: Lambda handler
+  - `controllers/`: API controller classes
+  - `services/`: Service classes for business logic
+  - `repositories/`: Repository classes for data access
+- `serverless.yml`: Serverless Framework configuration file
+- `ormconfig.json`: TypeORM configuration file
 
 ### Components
 
@@ -37,29 +60,58 @@ Flow of requests, like this, it is:
 +---------------------+
 ```
 
-### Setup
+## Setup
 
-1. Install dependencies, you must:
+1. Install Node.js 14.x or later.
+
+2. Install the Serverless Framework globally:
+
+   ```
+   npm install -g serverless
+   ```
+
+3. Install dependencies, you must:
 
    ```
    npm install
    ```
 
-2. Configure the environment variables, you should:
+4. Configure the environment variables, you should:
 
    ```
    cp .env.example .env
    ```
 
-3. Deploy the serverless stack, do this:
+5. Deploy the serverless stack, do this:
 
    ```
    npx serverless deploy
    ```
 
-4. Use Postman collection to test the API, you can. Import the `postman_collection.json` file and send requests, you may.
+   Example:
 
-### Tests
+   ```
+   serverless deploy --stage your_stage --region your_region
+   ```
+
+6. Use Postman collection to test the API, you can. Import the `postman_collection.json` file and send requests, you may.
+
+## Running Locally
+
+To run the API locally using the Serverless Offline plugin, execute the following command:
+
+```
+serverless offline
+```
+
+## Endpoints
+
+- `GET /favorites`: Retrieve favorites by filter (profileId and optional categories)
+- `POST /favorites`: Create a new favorite
+- `PUT /favorites/{id}`: Update an existing favorite
+- `DELETE /favorites/{id}`: Delete a favorite by ID
+
+## Tests
 
 Jest, we use for tests. Run them like this, you can:
 

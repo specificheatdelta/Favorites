@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Favorite API
+  description: A simple API for managing user favorites
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /favorites:
+    get:
+      summary: Get favorites by filter
+      parameters:
+        - in: query
+          name: profileId
+          schema:
+            type: string
+          required: true
+          description: ID of the user owning the favorites
+        - in: query
+          name: categories
+          schema:
+            type: array
+            items:
+              type: string
+          description: Categories to filter by (optional)
+      responses:
+        "200":
+          description: A list of favorites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Favorite"
+        "400":
+          description: Bad request
+    post:
+      summary: Create a new favorite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FavoriteInput"
+      responses:
+        "201":
+          description: Favorite created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Favorite"
+        "400":
+          description: Bad request
+
+  /favorites/{id}:
+    put:
+      summary: Update an existing favorite
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the favorite to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FavoriteInput"
+      responses:
+        "200":
+          description: Favorite updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Favorite"
+        "400":
+          description: Bad request
+        "404":
+          description: Favorite not found
+    delete:
+      summary: Delete a favorite by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the favorite to delete
+      responses:
+        "204":
+          description: Favorite deleted successfully
+        "404":
+          description: Favorite not found
+
+components:
+  schemas:
+    Favorite:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the favorite
+        profileId:
+          type: string
+          description: ID of the user owning the favorite
+        title:
+          type: string
+          description: Title of the favorite
+        category:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the favorite
+        contentId:
+          type: string
+          description: Foreign key to the content the favorite links to
+      required:
+        - id
+        - profileId
+        - title
+        - category
+        - contentId
+
+    FavoriteInput:
+      type: object
+      properties:
+        profileId:
+          type: string
+          description: ID of the user owning the favorite
+        title:
+          type: string
+          description: Title of the favorite
+        category:
+          type: array
+          items:
+            type: string
+          description: Categories associated with the favorite
+        contentId:
+          type: string
+          description: Foreign key to the content the favorite links to
+      required:
+        - profileId
+        - title
+        - category
+        - contentId

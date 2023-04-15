@@ -96,6 +96,52 @@ Flow of requests, like this, it is:
 
 6. Use Postman collection to test the API, you can. Import the `postman_collection.json` file and send requests, you may.
 
+## Docker Setup for MySQL
+
+To simplify the process of setting up a local MySQL instance, we've provided a Dockerfile that will run a MySQL 8.0 container. This allows you to run the MySQL server in an isolated environment without affecting your local system.
+
+### Prerequisites
+
+1. Install Docker on your machine. Follow the official Docker installation guide for your operating system: https://docs.docker.com/get-docker/
+
+### Steps to Run MySQL with Docker
+
+1. Navigate to the project directory where the Dockerfile is located.
+
+2. Build the Docker image by running the following command:
+
+   ```
+   docker build -t my-mysql:8.0 .
+   ```
+
+3. Run the Docker container with the following command:
+
+   ```
+   docker run -d -p 3306:3306 --name my-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw my-mysql:8.0
+   ```
+
+   Replace "my-secret-pw" with a secure password for the MySQL root user.
+
+4. Update your .env file with the appropriate connection details, including the MySQL root password you set in step 3. Make sure to set the DB_HOST to "localhost" or "127.0.0.1" and the DB_PORT to 3306.
+
+5. Now, you can run your application, and it will connect to the MySQL instance running inside the Docker container.
+
+### Stopping the MySQL Docker Container
+
+To stop the MySQL Docker container, run the following command:
+
+```
+docker stop my-mysql
+```
+
+To remove the container, run the following command:
+
+```
+docker rm my-mysql
+```
+
+For more information on using Docker and managing containers, refer to the official Docker documentation: https://docs.docker.com/
+
 ## Running Locally
 
 To run the API locally using the Serverless Offline plugin, execute the following command:
@@ -116,7 +162,13 @@ serverless offline
 Jest, we use for tests. Run them like this, you can:
 
 ```
+
 npm test
+
 ```
 
 May the force be with you!
+
+```
+
+```

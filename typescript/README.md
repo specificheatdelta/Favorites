@@ -150,6 +150,26 @@ To run the API locally using the Serverless Offline plugin, execute the followin
 serverless offline
 ```
 
+## Available Scripts
+
+In the project directory, you can run:
+
+- `npm run docker-start`: Starts the MySQL Docker container on port 3306 with the my-mysql container name and MYSQL_ROOT_PASSWORD=my-secret-pw environment variable.
+
+- `npm run docker-stop`: Stops and removes the MySQL Docker container with my-mysql container name.
+
+- `npm test`: Runs the Jest test suite.
+
+- `npm run test:coverage`: Runs the Jest test suite and generates a coverage report.
+
+- `npm run swagger`: Runs the Swagger UI for the API documentation. The Swagger YAML file is expected to be located at ./swagger.yml.
+
+- `npm run sls-offline`: Runs the serverless offline stack with the dev stage and the environment variables for the local MySQL instance. The stack will be available at http://localhost:3000.
+
+- `npm start`: Starts the MySQL Docker container and runs the serverless offline stack.
+
+- `npm run stop`: Stops and removes the MySQL Docker container.
+
 ## Endpoints
 
 - `GET /favorites`: Retrieve favorites by filter (profileId and optional categories)
@@ -162,13 +182,8 @@ serverless offline
 Jest, we use for tests. Run them like this, you can:
 
 ```
-
 npm test
-
+npm run test:coverage
 ```
 
 May the force be with you!
-
-```
-
-```

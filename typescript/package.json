@@ -4,17 +4,41 @@
   "description": "Favorites API, this is! Manage user favorites, it does. Node.js, TypeScript, and AWS Lambda, we use, hmm. In MySQL database, the data is stored, yes.",
   "main": "jest.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docker-start": "docker run -d -p 3306:3306 --name my-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw my-mysql:8.0",
+    "docker-stop": "docker stop my-mysql && docker rm my-mysql",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "swagger": "swagger-ui-watcher ./swagger.yml",
+    "sls-offline": "sls offline --stage dev --env DB_HOST=localhost --env DB_PORT=3306 --env DB_USER=root --env DB_PASSWORD=my-secret-pw",
+    "start": "npm run docker-start && npm run sls-offline",
+    "stop": "npm run docker-stop"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/ajv": "^1.0.0",
+    "@types/aws-lambda": "^8.10.114",
+    "@types/bunyan": "^1.8.8",
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
+    "@types/swagger-parser": "^7.0.1",
+    "jest": "^29.5.0",
+    "serverless": "^3.30.1",
     "swagger-ui": "^4.18.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "ajv": "^8.12.0",
+    "aws-sdk": "^2.1359.0",
+    "bunyan": "^1.8.15",
+    "class-validator": "^0.14.0",
+    "dotenv": "^16.0.3",
     "mysql": "^2.18.1",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-http": "^3.2.0",
+    "swagger-parser": "^10.0.3",
     "typeorm": "^0.3.14"
   }
 }

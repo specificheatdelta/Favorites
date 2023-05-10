@@ -1,0 +1,183 @@
+{
+  "info": {
+    "_postman_id": "dfe0b5d5-5e5a-4d2e-9e53-8a666b671e65",
+    "name": "Favorites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Favorites",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "platform",
+            "value": "web"
+          },
+          {
+            "key": "platform-version",
+            "value": "1.0.0"
+          },
+          {
+            "key": "transactionId",
+            "value": "1234567890"
+          }
+        ],
+        "url": {
+          "raw": "<your-api-url>/favorites?profileId={{profileId}}&category={{category}}",
+          "host": [
+            "<your-api-url>"
+          ],
+          "path": [
+            "favorites"
+          ],
+          "query": [
+            {
+              "key": "profileId",
+              "value": "{{profileId}}"
+            },
+            {
+              "key": "category",
+              "value": "{{category}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Favorite",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "platform",
+            "value": "web"
+          },
+          {
+            "key": "platform-version",
+            "value": "1.0.0"
+          },
+          {
+            "key": "transactionId",
+            "value": "1234567890"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"{{id}}\",\n  \"profileId\": \"{{profileId}}\",\n  \"title\": \"{{title}}\",\n  \"category\": [\"{{category1}}\", \"{{category2}}\"],\n  \"contentId\": \"{{contentId}}\"\n}"
+        },
+        "url": {
+          "raw": "<your-api-url>/favorites",
+          "host": [
+            "<your-api-url>"
+          ],
+          "path": [
+            "favorites"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Favorite by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "platform",
+            "value": "web"
+          },
+          {
+            "key": "platform-version",
+            "value": "1.0.0"
+          },
+          {
+            "key": "transactionId",
+            "value": "1234567890"
+          }
+        ],
+        "url": {
+          "raw": "<your-api-url>/favorites/{{id}}",
+          "host": [
+            "<your-api-url>"
+          ],
+          "path": [
+            "favorites",
+            "{{id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Favorite",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "platform",
+            "value": "web"
+          },
+          {
+            "key": "platform-version",
+            "value": "1.0.0"
+          },
+          {
+            "key": "transactionId",
+            "value": "1234567890"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"{{id}}\",\n  \"profileId\": \"{{profileId}}\",\n  \"title\": \"{{title}}\",\n  \"category\": [\"{{category1}}\", \"{{category2}}\"],\n  \"contentId\": \"{{contentId}}\"\n}"
+        },
+        "url": {
+          "raw": "<your-api-url>/favorites/{{id}}",
+          "host": [
+            "<your-api-url>"
+          ],
+          "path": [
+            "favorites",
+            "{{id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Favorite",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "platform",
+            "value": "web"
+          },
+          {
+            "key": "platform-version",
+            "value": "1.0.0"
+          },
+          {
+            "key": "transactionId",
+            "value": "1234567890"
+          }
+        ],
+        "url": {
+          "raw": "<your-api-url>/favorites/{{id}}",
+          "host": [
+            "<your-api-url>"
+          ],
+          "path": [
+            "favorites",
+            "{{id}}"
+          ]
+        }
+      }
+    }
+  ]
+}
